@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="{{ url_for('home') }}">Home</a></li>
+            <li><a href="{{ url_for('about') }}" class="active">About</a></li>
+            <li><a href="{{ url_for('contact') }}">Contact</a></li>
+            {% if current_user.is_authenticated %}
+                <li><a href="{{ url_for('logout') }}">Logout</a></li>
+            {% else %}
+                <li><a href="{{ url_for('login') }}">Login</a></li>
+                <li><a href="{{ url_for('register') }}">Register</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+    <div class="container">
+        <h1>About Us</h1>
+        <p>We are the students of <strong>The National Institute of Engineering</strong> who are pursuing B.E in Computer Science
+        Engineering.With The help of our Mentor <strong>Mr.V Balaji</strong> Assistant professor,CSE Department,NIE,Mysuru We have created the A I Image Generator.
+    </p>
+        <h3>Team Members</h3>
+        <img src="{{ url_for('static', filename='gagan.jpeg') }}" alt="Description of Image" id= "sir"/>
+        <p><strong>Gagan P</strong></P>
+        <img src="{{ url_for('static', filename='deekshith.jpeg') }}" alt="Description of Image" id= "sir"/>
+        <p><strong>Deekshith P Kumar</strong></P>
+            <img src="{{ url_for('static', filename='darshan.jpeg') }}" alt="Description of Image" id= "sir"/>
+            <p><strong>Darshan D A</strong></P>
+                <img src="{{ url_for('static', filename='gaowtham.jpeg') }}" alt="Description of Image" id= "sir"/>
+                <p><strong>Gowtham S P</strong></P>
+                    <img src="{{ url_for('static', filename='Balajisir.jpeg') }}" alt="Description of Image" id= "sir"/>
+                    <p> <strong>Mr Balaji V</strong><br>
+                        Assistant Professor,CSE Department,NIE,Mysuru<p/>
+    </div>
+    
+</body>
+</html>

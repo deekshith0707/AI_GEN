@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="{{ url_for('home') }}" class="active">Home</a></li>
+            <li><a href="{{ url_for('about') }}">About</a></li>
+            <li><a href="{{ url_for('contact') }}">Contact</a></li>
+            {% if current_user.is_authenticated %}
+                <li><a href="{{ url_for('logout') }}">Logout</a></li>
+            {% else %}
+                <li><a href="{{ url_for('login') }}">Login</a></li>
+                <li><a href="{{ url_for('register') }}">Register</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+    <div class="container">
+        <h1>Welcome to Our AI Image Generator</h1>
+        <img src="{{ url_for('static', filename='DG.png') }}" alt="Description of Image" id = "ii"/>
+
+
+        {% if current_user.is_authenticated %}
+            <form action="{{ url_for('generate') }}" method="POST">
+                <input type="text" name="prompt" placeholder="Enter a prompt to generate an image" required>
+                <button type="submit">Generate Image</button>
+            </form>
+        {% else %}
+            <p>Please <a href="{{ url_for('login') }}">login</a> or <a href="{{ url_for('register') }}">register</a> to generate images.</p>
+        {% endif %}
+    </div>
+</body>
+</html>
